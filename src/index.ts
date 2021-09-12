@@ -11,7 +11,7 @@ import {
 
 // -----------------SETTINGS -----------------
 const _resolution: number = 0.5; // 1.0 always works
-const _updatePPS = false; // true always works
+const _updatePPS = false; // Both true and false works now
 const _useCameraLastArg: boolean = false; // true always works
 // ------------- END OF SETTINGS -------------
 
@@ -68,11 +68,17 @@ PIXI.Loader.shared.add("models/cube.gltf").load((loader, resources) => {
     objectToRender: <any>ppsModel,
   });
 
-  pps.anchor.set(0.5, 0.5);
+  if (_updatePPS) {
+    // If we don't want to update the position of the pps, we can just let it be anchor 0,0 and position 0,0
+    pps.anchor.set(0.5, 0.5);
+  }
   pps.scale.set(1.0);
   pps.alpha = 0.33;
   pps.zIndex = 2;
-  pps.position.set(getScreen().width / 2, getScreen().height / 2);
+  if (_updatePPS) {
+    // If we don't want to update the position of the pps, we can just let it be anchor 0,0 and position 0,0
+    pps.position.set(getScreen().width / 2, getScreen().height / 2);
+  }
 
   app.stage.addChild(pps);
   app.stage.addChild(<any>model);

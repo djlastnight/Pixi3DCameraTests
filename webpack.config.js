@@ -13,6 +13,11 @@ module.exports = {
       },
     ],
   },
+  // Use externals so Pixi3D dev branch can be used.
+  externals: {
+    "pixi.js": "PIXI",
+    "pixi3d": "PIXI3D"
+  },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
